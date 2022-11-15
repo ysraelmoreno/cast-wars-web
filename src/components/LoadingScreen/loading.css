@@ -70,6 +70,15 @@
   }
 }
 
+@keyframes move-lens {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(50px);
+  }
+}
+
 @keyframes head-tilt {
   from {
     transform: rotate(0deg);
@@ -240,6 +249,7 @@
   position: absolute;
   top: 22px;
   left: 32px;
+  animation: move-lens 2s 2s alternate infinite;
 }
 
 .bb-8__head__top__lens:before {
