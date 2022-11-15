@@ -16,7 +16,7 @@ function SliderButton({ post }: ISliderButtonProps) {
 
   return (
     <SliderButtonContainer
-      onClick={(_) => {
+      onClick={(_event) => {
         const img = new Image();
         img.src = post.yoast_head_json.og_image[0].url;
 
