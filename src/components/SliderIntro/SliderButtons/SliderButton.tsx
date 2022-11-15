@@ -12,10 +12,11 @@ interface ISliderButtonProps {
 }
 
 function SliderButton({ post }: ISliderButtonProps) {
-  const { setSelectedSlide } = useSlider();
+  const { setSelectedSlide, selectedSlide } = useSlider();
 
   return (
     <SliderButtonContainer
+      active={selectedSlide.title === post.yoast_head_json.og_title}
       onClick={(_event) => {
         const img = new Image();
         img.src = post.yoast_head_json.og_image[0].url;
@@ -32,16 +33,13 @@ function SliderButton({ post }: ISliderButtonProps) {
       }}
       key={post.title.rendered}
     >
-      <SliderButtonImage>
-        <NextImage
-          src={post.yoast_head_json.og_image[0].url}
-          alt="Slider image"
-          width={120}
-          height={128}
-        />
-      </SliderButtonImage>
+      <SliderButtonImage
+        css={{
+          backgroundImage: `url(${post.yoast_head_json.og_image[0].url})`,
+        }}
+      ></SliderButtonImage>
       <SliderButtonContent>
-        <h5>{post.yoast_head_json.og_title}</h5>
+        <h4>{post.yoast_head_json.og_title}</h4>
         <p>{post.yoast_head_json.og_description.substring(0, 100)}...</p>
       </SliderButtonContent>
     </SliderButtonContainer>
