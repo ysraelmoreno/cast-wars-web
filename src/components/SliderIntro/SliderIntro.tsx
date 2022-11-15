@@ -17,26 +17,14 @@ interface ISliderIntroProps {
 
 function SliderIntro({ posts, children }: ISliderIntroProps) {
   return (
-    <SliderProvider>
+    <SliderProvider posts={posts}>
       <SliderIntroWrapper posts={posts}>{children}</SliderIntroWrapper>
     </SliderProvider>
   );
 }
 
 function SliderIntroWrapper({ posts, children }: ISliderIntroProps) {
-  const { setPosts, setSelectedSlide, selectedSlide } = useSlider();
-
-  useEffect(() => {
-    setPosts(posts);
-
-    const selectedSlide = {
-      description: posts[0].yoast_head_json.og_description,
-      title: posts[0].yoast_head_json.og_title,
-      imageURL: posts[0].yoast_head_json.og_image[0].url,
-    } as Slide;
-
-    setSelectedSlide(selectedSlide);
-  }, [posts, setPosts, setSelectedSlide]);
+  const { setSelectedSlide, selectedSlide } = useSlider();
 
   return (
     <>
@@ -57,10 +45,8 @@ function SliderIntroWrapper({ posts, children }: ISliderIntroProps) {
         <SliderContentContainer>
           <SliderInfoWrapper>
             <SliderTitle>
-              <h3>{posts[0].title.rendered}</h3>
-              <p>
-                {posts[0].yoast_head_json.og_description.substring(0, 201)}...
-              </p>
+              <h3>{selectedSlide.title}</h3>
+              <p>{selectedSlide.description?.substring(0, 201)}...</p>
             </SliderTitle>
           </SliderInfoWrapper>
           <SliderButtons></SliderButtons>

@@ -5,41 +5,36 @@ import {
   MenuWrapper,
 } from "./styles";
 import { FiHome } from "react-icons/fi";
+import { useEffect, useState } from "react";
 
 function Menu() {
+  const [location, setLocation] = useState("");
+
+  useEffect(() => {
+    setLocation(window.location.pathname);
+  }, []);
+
   return (
     <>
       <MenuContainer>
         <MenuWrapper>
           <MenuItemWrapper>
-            <MenuItem active={window.location.pathname === "/"} href="/">
+            <MenuItem active={location === "/"} href="/">
               <FiHome />
             </MenuItem>
-            <MenuItem active={window.location.pathname === "/tv"} href="/tv">
+            <MenuItem active={location === "/tv"} href="/tv">
               TV
             </MenuItem>
-            <MenuItem
-              active={window.location.pathname === "/noticias"}
-              href="/noticias"
-            >
+            <MenuItem active={location === "/noticias"} href="/noticias">
               Notícias
             </MenuItem>
-            <MenuItem
-              active={window.location.pathname === "/podcast"}
-              href="/podcast"
-            >
+            <MenuItem active={location === "/podcast"} href="/podcast">
               Podcast
             </MenuItem>
-            <MenuItem
-              active={window.location.pathname === "/artigos"}
-              href="/artigos"
-            >
+            <MenuItem active={location === "/artigos"} href="/artigos">
               Artigos
             </MenuItem>
-            <MenuItem
-              active={window.location.pathname === "/resenhas"}
-              href="/resenhas"
-            >
+            <MenuItem active={location === "/resenhas"} href="/resenhas">
               Resenhas
             </MenuItem>
           </MenuItemWrapper>
