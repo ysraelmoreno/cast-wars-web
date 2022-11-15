@@ -4,38 +4,43 @@ import wordpressAPIFactory from "../api/wordpress";
 
 import { QueryClient } from "@tanstack/react-query";
 import SliderIntro from "../components/SliderIntro";
-export async function getStaticProps() {
-  const posts = await (await wordpressAPIFactory().getPosts()).data;
+import { useEffect, useState } from "react";
+import { Post } from "../model/Post";
+import LoadingScreen from "../components/LoadingScreen";
 
-  return {
-    props: {
-      posts,
-    },
-  };
-}
-
-export default function Home({ posts }: any) {
+export default function Home() {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { getPosts } = wordpressAPIFactory();
 
-  const { data, isFetching, isLoading, error } = useQuery({
-    queryKey: ["posts"],
-    queryFn: () => getPosts().then((res) => res.data),
-    initialData: posts,
-  });
+  useEffect(() => {
+    (async () => {
+      const data = await getPosts();
 
-  if (isFetching) {
-    return "Fetching...";
-  }
+      setPosts(data.data);
 
-  if (isLoading) {
-    return "Loading";
-  }
+      setIsLoading(false);
+    })();
+  }, [getPosts]);
 
   return (
     <>
-      <SliderIntro posts={data}>
-        <Header />
-      </SliderIntro>
+      {isLoading ? (
+        <div
+          style={{
+            backgroundColor: "#101325",
+            position: "relative",
+            width: "100vw",
+            height: "100vh",
+          }}
+        >
+          <LoadingScreen />
+        </div>
+      ) : (
+        <SliderIntro posts={posts}>
+          <Header />
+        </SliderIntro>
+      )}
     </>
   );
 }

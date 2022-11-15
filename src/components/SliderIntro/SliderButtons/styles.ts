@@ -15,9 +15,16 @@ export const SliderButtonContainer = styled("div", {
   backgroundImage:
     "linear-gradient(to right, rgba(255, 249, 249, 0.45), rgba(90, 90, 90, 0.45))",
   borderRadius: 6,
-
+  transition: "all 0.5s ease",
+  boxShadow: 0,
   "& + &": {
     marginTop: "15px",
+  },
+
+  "&:hover": {
+    backgroundImage:
+      "linear-gradient(to right, rgba(255, 249, 249, 0.45), rgba(98, 98, 90, 0.45))",
+    boxShadow: "2px 2px 10px #000000",
   },
 });
 

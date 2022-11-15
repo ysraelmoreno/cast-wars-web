@@ -10,24 +10,25 @@ export interface Slide {
 interface ISlider {
   posts: Post[];
   selectedSlide: Slide;
-  setPosts: (posts: Post[]) => void;
   setSelectedSlide: (selectedSlide: Slide) => void;
 }
 
 interface ISliderProviderProps {
   children: React.ReactNode;
+  posts: Post[];
 }
 
 const SliderContext = createContext<ISlider>({} as ISlider);
 
-export const SliderProvider = ({ children }: ISliderProviderProps) => {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [selectedSlide, setSelectedSlide] = useState<Slide>({} as Slide);
+export const SliderProvider = ({ children, posts }: ISliderProviderProps) => {
+  const [selectedSlide, setSelectedSlide] = useState<Slide>({
+    description: posts[0]?.yoast_head_json.og_description,
+    title: posts[0]?.yoast_head_json.title,
+    imageURL: posts[0]?.yoast_head_json.og_image[0].url,
+  } as Slide);
 
   return (
-    <SliderContext.Provider
-      value={{ selectedSlide, setSelectedSlide, setPosts, posts }}
-    >
+    <SliderContext.Provider value={{ selectedSlide, setSelectedSlide, posts }}>
       {children}
     </SliderContext.Provider>
   );

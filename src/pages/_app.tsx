@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import "../components/LoadingScreen/loading.css";
 import type { AppProps } from "next/app";
 import CastWarsGlobalCSS from "../styles/CastWars.global";
 import { Poppins } from "@next/font/google";
