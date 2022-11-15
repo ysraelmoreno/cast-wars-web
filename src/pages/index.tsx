@@ -1,8 +1,6 @@
 import Header from "../components/Header";
-import { useQuery } from "@tanstack/react-query";
 import wordpressAPIFactory from "../api/wordpress";
 
-import { QueryClient } from "@tanstack/react-query";
 import SliderIntro from "../components/SliderIntro";
 import { useEffect, useState } from "react";
 import { Post } from "../model/Post";
