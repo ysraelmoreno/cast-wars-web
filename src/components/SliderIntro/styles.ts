@@ -25,6 +25,11 @@ export const SliderContentContainer = styled("section", {
 
 export const SliderTitle = styled("div", {
   color: "White",
+
+  h1: {
+    fontSize: "36px",
+    fontWeight: 900,
+  },
 });
 
 export const SliderInfoWrapper = styled("div", {

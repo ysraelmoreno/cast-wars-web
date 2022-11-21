@@ -26,6 +26,18 @@ export const MenuWrapper = styled("div", {
 export const MenuItemWrapper = styled("div", {
   display: "flex",
   alignItems: "center",
+
+  variants: {
+    color: {
+      primary: {},
+      secondary: {
+        a: {
+          color: "$secondary !important",
+          opacity: 1,
+        },
+      },
+    },
+  },
 });
 
 export const MenuItem = styled(Link, {
@@ -33,7 +45,7 @@ export const MenuItem = styled(Link, {
   textDecoration: "none",
   display: "flex",
   alignItems: "center",
-  fontWeight: 400,
+  fontWeight: 500,
   fontSize: 12,
   opacity: 0.5,
   transition: "all 0.2s ease",

@@ -27,6 +27,9 @@ function SliderButton({ post }: ISliderButtonProps) {
               title: post.yoast_head_json.title,
               description: post.yoast_head_json.og_description,
               imageURL: post.yoast_head_json.og_image[0].url,
+              id: post.id,
+              tags: post.tags,
+              categories: post.categories,
             });
           }
         };
@@ -39,7 +42,7 @@ function SliderButton({ post }: ISliderButtonProps) {
         }}
       ></SliderButtonImage>
       <SliderButtonContent>
-        <h4>{post.yoast_head_json.og_title}</h4>
+        <h4>{post.yoast_head_json.og_title.replace(" - Cast Wars", "")}</h4>
         <p>{post.yoast_head_json.og_description.substring(0, 100)}...</p>
       </SliderButtonContent>
     </SliderButtonContainer>

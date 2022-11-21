@@ -1,5 +1,7 @@
-import { useEffect } from "react";
+import { useRouter } from "next/router";
 import { Post } from "../../model/Post";
+import Button from "../Button";
+import Chip from "../Chip";
 import SliderButtons from "./SliderButtons";
 import { Slide, SliderProvider, useSlider } from "./SliderContext";
 import {
@@ -23,14 +25,16 @@ function SliderIntro({ posts, children }: ISliderIntroProps) {
   );
 }
 
-function SliderIntroWrapper({ posts, children }: ISliderIntroProps) {
-  const { setSelectedSlide, selectedSlide } = useSlider();
+function SliderIntroWrapper({ children }: ISliderIntroProps) {
+  const { selectedSlide } = useSlider();
+
+  const router = useRouter();
 
   return (
     <>
       <SliderContainer
         css={{
-          backgroundColor: "#002C54",
+          backgroundColor: "$secondary",
           height: 800,
           backgroundImage: `url(${selectedSlide.imageURL})`,
           backgroundSize: "cover",
@@ -45,11 +49,31 @@ function SliderIntroWrapper({ posts, children }: ISliderIntroProps) {
         <SliderContentContainer>
           <SliderInfoWrapper>
             <SliderTitle>
-              <h3>{selectedSlide.title}</h3>
+              {selectedSlide.categories[0] && (
+                <Chip
+                  css={{
+                    marginBottom: "15px",
+                  }}
+                >
+                  {selectedSlide.categories[0]}
+                </Chip>
+              )}
+              <h1>{selectedSlide.title.replace(" - Cast Wars", "")}</h1>
               <p>{selectedSlide.description?.substring(0, 201)}...</p>
+              <Button
+                onClick={() => {
+                  router.push(`/posts/${selectedSlide.id}`);
+                }}
+                variant="secondary"
+                css={{
+                  marginTop: "20px",
+                }}
+              >
+                Ler notícia
+              </Button>
             </SliderTitle>
           </SliderInfoWrapper>
-          <SliderButtons></SliderButtons>
+          <SliderButtons />
         </SliderContentContainer>
       </SliderContainer>
     </>

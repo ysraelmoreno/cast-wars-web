@@ -12,7 +12,7 @@ function SliderButtons({ quantityOfSlides = 3 }: ISliderButtonProps) {
 
   return (
     <SliderButtonsContainer>
-      {posts.map((post: Post, index: number) => {
+      {posts?.map((post: Post, index: number) => {
         if (index >= quantityOfSlides) {
           return;
         }

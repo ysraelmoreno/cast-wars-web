@@ -1,28 +1,18 @@
 import Header from "../components/Header";
-import wordpressAPIFactory from "../api/wordpress";
 
 import SliderIntro from "../components/SliderIntro";
-import { useEffect, useState } from "react";
-import { Post } from "../model/Post";
 import LoadingScreen from "../components/LoadingScreen";
+import Head from "next/head";
+import usePosts from "../hooks/usePosts";
 
 export default function Home() {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const { getPosts } = wordpressAPIFactory();
-
-  useEffect(() => {
-    (async () => {
-      const data = await getPosts();
-
-      setPosts(data.data);
-
-      setIsLoading(false);
-    })();
-  }, [getPosts]);
+  const { isLoading, posts } = usePosts();
 
   return (
     <>
+      <Head>
+        <title>Home - Cast Wars</title>
+      </Head>
       {isLoading ? (
         <div
           style={{

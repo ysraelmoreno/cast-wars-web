@@ -2,14 +2,18 @@ import Image from "next/image";
 import Menu from "../Menu";
 import { HeaderContainer, HeaderWrapper, LogoContainer } from "./styles";
 
-function Header() {
+interface IHeaderProps {
+  color?: "primary" | "secondary";
+}
+
+function Header({ color }: IHeaderProps) {
   return (
     <HeaderWrapper>
-      <HeaderContainer>
+      <HeaderContainer color={color}>
         <LogoContainer>
           <Image src="/logo.png" alt="Cast Wars logo" width={80} height={80} />
         </LogoContainer>
-        <Menu />
+        <Menu color={color} />
       </HeaderContainer>
     </HeaderWrapper>
   );

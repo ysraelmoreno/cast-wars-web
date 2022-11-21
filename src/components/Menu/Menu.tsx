@@ -7,7 +7,11 @@ import {
 import { FiHome } from "react-icons/fi";
 import { useEffect, useState } from "react";
 
-function Menu() {
+interface IMenuProps {
+  color?: "primary" | "secondary";
+}
+
+function Menu({ color = "primary" }: IMenuProps) {
   const [location, setLocation] = useState("");
 
   useEffect(() => {
@@ -18,7 +22,7 @@ function Menu() {
     <>
       <MenuContainer>
         <MenuWrapper>
-          <MenuItemWrapper>
+          <MenuItemWrapper color={color}>
             <MenuItem active={location === "/"} href="/">
               <FiHome />
             </MenuItem>

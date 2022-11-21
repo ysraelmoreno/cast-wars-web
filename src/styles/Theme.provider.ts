@@ -1,4 +1,4 @@
-import { createStitches } from "@stitches/react";
+import { createStitches, CSS as CWCSS } from "@stitches/react";
 import CastWarsTheme from "./CastWars.theme";
 
 const { config, createTheme, css, getCssText, globalCss, keyframes, styled } =
@@ -9,3 +9,5 @@ const { config, createTheme, css, getCssText, globalCss, keyframes, styled } =
   });
 
 export { css, globalCss, keyframes, config, getCssText, styled };
+
+export type CSS = CWCSS;

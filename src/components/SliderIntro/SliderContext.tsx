@@ -4,6 +4,9 @@ import { Post } from "../../model/Post";
 export interface Slide {
   imageURL: string;
   title: string;
+  id: number;
+  categories: string[];
+  tags: string[];
   description: string;
 }
 
@@ -25,6 +28,9 @@ export const SliderProvider = ({ children, posts }: ISliderProviderProps) => {
     description: posts[0]?.yoast_head_json.og_description,
     title: posts[0]?.yoast_head_json.title,
     imageURL: posts[0]?.yoast_head_json.og_image[0].url,
+    id: posts[0].id,
+    categories: posts[0].categories,
+    tags: posts[0].tags,
   } as Slide);
 
   return (

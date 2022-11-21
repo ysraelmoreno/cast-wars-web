@@ -4,6 +4,8 @@ export interface Post {
   date_gmt: string;
   type: string;
   status: string;
+  categories: string[];
+  tags: string[];
   title: RenderedContent<string>;
   content: RenderedContent<string>;
   excerpt: RenderedContent<string>;

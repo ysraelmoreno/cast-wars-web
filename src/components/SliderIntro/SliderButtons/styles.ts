@@ -25,7 +25,7 @@ export const SliderButtonContent = styled("div", {
   p: {
     fontSize: 12,
     opacity: 0.5,
-    marginTop: 5,
+    marginTop: 15,
   },
 });
 
