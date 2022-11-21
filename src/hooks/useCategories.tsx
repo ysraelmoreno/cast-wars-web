@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import apiRoutes from "../api/api";
+import wordpressAPIFactory from "../api/wordpress";
 
 function useCategories() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const data = await apiRoutes.get("/categories");
+      const { getCategories } = wordpressAPIFactory();
 
-      setCategories(data.data);
+      const categoriesList = await getCategories();
+
+      setCategories(categoriesList.data);
     })();
   }, []);
 

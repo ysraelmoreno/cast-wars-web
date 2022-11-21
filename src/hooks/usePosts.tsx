@@ -10,11 +10,11 @@ function usePosts() {
 
   useEffect(() => {
     (async () => {
-      const { getPosts } = wordpressAPIFactory();
+      const { getPosts, getCategories } = wordpressAPIFactory();
 
       const [{ data: listPosts }, { data: categories }] = await Promise.all([
         getPosts(),
-        apiRoutes.get("/categories"),
+        getCategories(),
       ]);
 
       const posts = PostsFormatter({
