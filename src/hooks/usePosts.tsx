@@ -10,16 +10,15 @@ function usePosts() {
 
   useEffect(() => {
     (async () => {
-      const { getPosts, getCategories } = wordpressAPIFactory();
+      const { getPosts, getCategories, getAuthors } = wordpressAPIFactory();
 
-      const [{ data: listPosts }, { data: categories }] = await Promise.all([
-        getPosts(),
-        getCategories(),
-      ]);
+      const [{ data: listPosts }, { data: categories }, { data: authors }] =
+        await Promise.all([getPosts(), getCategories(), getAuthors()]);
 
       const posts = PostsFormatter({
         categories,
         posts: listPosts,
+        authors,
       });
 
       setPosts(posts);

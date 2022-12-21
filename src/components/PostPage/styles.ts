@@ -7,7 +7,7 @@ export const PostContainer = styled("main", {
 });
 
 export const PostHeaderContainer = styled("section", {
-  margin: "50px 0",
+  margin: "50px 0 20px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -58,4 +58,30 @@ export const DescriptionContainer = styled("div", {
   ["& > figure ~ figure"]: {
     display: "flex",
   },
+});
+
+export const AuthorContainer = styled("div", {
+  display: "flex",
+  alignItems: "center",
+  margin: "5px 0 20px 0",
+});
+
+export const AuthorImage = styled("img", {
+  borderRadius: "130px",
+});
+
+export const AuthorContent = styled("div", {
+  marginLeft: "10px",
+
+  span: {
+    opacity: 0.5,
+  },
+});
+
+export const PostFooterContainer = styled("section", {
+  maxWidth: "1080px",
+  width: "100%",
+  margin: "20px auto",
+  display: "flex",
+  justifyContent: "center",
 });

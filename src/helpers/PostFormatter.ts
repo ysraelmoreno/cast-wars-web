@@ -1,4 +1,4 @@
-import { Post } from "../model/Post";
+import { Author, Post } from "../model/Post";
 
 interface ICategoriesMapper {
   categories: any[];
@@ -7,11 +7,13 @@ interface ICategoriesMapper {
 
 interface IPostsFormatter {
   posts: Post[];
+  authors: Author[];
   categories: any[];
 }
 
 interface IPostFormatter {
   post: Post;
+  authors: Author[];
   categories: any[];
 }
 
@@ -30,13 +32,14 @@ export function mapCategories({
   return findCategories;
 }
 
-function PostsFormatter({ posts, categories }: IPostsFormatter) {
+function PostsFormatter({ posts, categories, authors }: IPostsFormatter) {
   let postsFormatted: Post[] = [];
 
   for (const post of posts) {
     const postFormatted = PostFormatter({
       post: post,
       categories,
+      authors,
     });
 
     postsFormatted = [...postsFormatted, postFormatted];
@@ -45,7 +48,7 @@ function PostsFormatter({ posts, categories }: IPostsFormatter) {
   return postsFormatted;
 }
 
-export function PostFormatter({ post, categories }: IPostFormatter) {
+export function PostFormatter({ post, categories, authors }: IPostFormatter) {
   let singlePost = post;
 
   const listCategories = mapCategories({
@@ -53,8 +56,13 @@ export function PostFormatter({ post, categories }: IPostFormatter) {
     listOfCategories: categories,
   });
 
+  const [author] = authors.filter(
+    (author) => author.name === post.yoast_head_json.author
+  );
+
   singlePost = {
     ...singlePost,
+    author,
     categories: listCategories,
   };
 

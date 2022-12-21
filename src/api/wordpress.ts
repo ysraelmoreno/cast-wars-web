@@ -5,6 +5,7 @@ import {
   WORDPRESS_VERSION,
   WORDPRESS_CATEGORIES,
   WORDPRESS_TAGS,
+  WORDPRESS_USERS,
 } from "../constants";
 
 const wordpressApi = axios.create({
@@ -49,7 +50,15 @@ const wordpressAPIFactory = () => {
     return tags;
   };
 
-  return { getPosts, getPost, getCategories, getTags, getTag };
+  const getAuthors = async () => {
+    const authors = await wordpressApi.get(
+      `${WORDPRESS_API}/${WORDPRESS_VERSION}/${WORDPRESS_USERS}`
+    );
+
+    return authors;
+  };
+
+  return { getPosts, getPost, getCategories, getTags, getTag, getAuthors };
 };
 
 export default wordpressAPIFactory;

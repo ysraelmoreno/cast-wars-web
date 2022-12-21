@@ -18,7 +18,7 @@ export const HeaderContainer = styled("section", {
   margin: "0 auto",
   width: "100%",
   padding: "10px",
-  borderBottom: "1px solid white",
+  borderBottom: "2px solid white",
 
   variants: {
     color: {

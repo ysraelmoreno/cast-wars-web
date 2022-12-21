@@ -6,10 +6,26 @@ export interface Post {
   status: string;
   categories: string[];
   tags: string[];
+  author: Author;
   title: RenderedContent<string>;
   content: RenderedContent<string>;
   excerpt: RenderedContent<string>;
   yoast_head_json: YoastHeadJSON;
+  yoast_head: string;
+}
+
+export interface Avatars {
+  24: string;
+  48: string;
+  96: string;
+  128: string;
+}
+
+export interface Author {
+  avatar_urls: Avatars;
+  description: string;
+  name: string;
+  id: number;
 }
 
 export interface YoastHeadJSON {
